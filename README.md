@@ -1,5 +1,13 @@
 # varlda
-An implementation of Variational LDA. See the related blogger blogpost for the details of how the formulas were derived. But in a nutshell (sorry for the LaTeX jargon! I wish github could render the formulas):
+An implementation of Variational LDA. See the related blogger blogpost for the details of how the formulas were derived. But in a nutshell.
+
+Sorry for the LaTeX jargon! I wish github could render the
+formulas. To produce a PDF version of this file, try this command:
+
+```
+pandoc -t latex -o README.pdf README.md
+```
+
 
 ## Generative model
 
@@ -14,15 +22,15 @@ An implementation of Variational LDA. See the related blogger blogpost for the d
 ## Algorithm
 
 
-1. Intialise $p_z$
+1. For m=1..M, n=1..N, k=1..K
+    1. $p_{z_{mnk}}=1/k$
 2. Repeat
-  1. For k=1..K, v=1..V
-    1. $\beta_{\varphi_{kv}}=\beta+\sum_{m=1}^M\sum_{n=1}^Nw_{mnv}p_{z_{mnk}}$
-  2. For m=1..M, k=1..K
-    1. $\alpha_{\theta_{mk}}=\alpha+\sum_{n=1}^Np_{z_{mnk}}$
-  3. For m=1..M, n=1..N
-    1. For k=1..K
-      1. $p_{z_{mnk}}=\exp\left(\psi(\alpha_{\theta_{mk}}) + \sum_{v=1}^Vw_{mnv}(\psi(\beta_{\varphi_{kv}})\right)$
-    2. Normalise $p_{z_{mn}}$ to sum to 1
+    1. For k=1..K, v=1..V
+        1. $\beta_{\varphi_{kv}}=\beta+\sum_{m=1}^M\sum_{n=1}^Nw_{mnv}p_{z_{mnk}}$
+    2. For m=1..M, k=1..K
+        1. $\alpha_{\theta_{mk}}=\alpha+\sum_{n=1}^Np_{z_{mnk}}$
+    3. For m=1..M, n=1..N, k=1..K
+        1. $p_{z_{mnk}}=\exp\left(\psi(\alpha_{\theta_{mk}}) - \psi\left(\sum_{k'=1}^K\alpha_{\theta_{mk'}}\right) + \sum_{v=1}^Vw_{mnv}\left(\psi(\beta_{\varphi_{kv}}-\psi\left(\sum_{k'=1}^K\beta_{\varphi_{k'v}}\right)\right)\right)$
+
 
 
