@@ -1,5 +1,5 @@
 # varlda
-An implementation of Variational LDA. See the related blogger blogpost for the details of how the formulas were derived. But in a nutshell.
+An implementation of Variational LDA. See the related [blogger blogpost](http://diegosmusings.blogspot.com.au/2015/11/deriving-latent-dirichlet-allocation.html) for the details of how the formulas were derived. But in a nutshell.
 
 Sorry for the LaTeX jargon! I wish github could render the
 formulas. To produce a PDF version of this file, try this command:
